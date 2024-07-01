@@ -1,5 +1,6 @@
 package com.isa.platform.u202210749.monitoring.domain.model.aggregates;
 
+import com.isa.platform.u202210749.monitoring.domain.model.commands.CreateSnapshotCommand;
 import com.isa.platform.u202210749.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,9 +25,16 @@ public class Snapshot extends AuditableAbstractAggregateRoot<Snapshot> {
     @NotBlank(message = "Temperature cannot be blank")
     private Double temperature;
 
-    @NotNull(message = "Energy is required")
-    @NotBlank(message = "Energy cannot be blank")
     private Double energy;
-
     private Integer leakage;
+
+    public Snapshot() {}
+
+    public Snapshot(CreateSnapshotCommand command){
+        this.snapshotId = command.snapshotId();
+        this.productSerialNumber = command.productSerialNumber();
+        this.temperature = command.temperature();
+        this.energy = command.energy();
+        this.leakage = command.leakage();
+    }
 }

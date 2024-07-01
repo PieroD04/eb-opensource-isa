@@ -5,6 +5,7 @@ import com.isa.platform.u202210749.inventory.domain.model.queries.GetProductById
 import com.isa.platform.u202210749.inventory.domain.model.queries.GetProductBySerialNumberQuery;
 import com.isa.platform.u202210749.inventory.domain.services.ProductQueryService;
 import com.isa.platform.u202210749.inventory.infrastructure.persistence.jpa.repositories.ProductRepository;
+import com.isa.platform.u202210749.monitoring.infrastructure.persistence.jpa.repositories.SnapshotRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -26,4 +27,5 @@ public class ProductQueryServiceImpl implements ProductQueryService {
     public Optional<Product> handle(GetProductByIdQuery query) {
         return productRepository.findById(query.productId());
     }
+
 }
