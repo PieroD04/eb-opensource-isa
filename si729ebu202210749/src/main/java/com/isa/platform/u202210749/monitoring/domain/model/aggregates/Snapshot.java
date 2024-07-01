@@ -22,7 +22,6 @@ public class Snapshot extends AuditableAbstractAggregateRoot<Snapshot> {
     private String productSerialNumber;
 
     @NotNull(message = "Temperature is required")
-    @NotBlank(message = "Temperature cannot be blank")
     private Double temperature;
 
     private Double energy;

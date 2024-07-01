@@ -1,5 +1,6 @@
 package com.isa.platform.u202210749.monitoring.interfaces.rest;
 
+import com.isa.platform.u202210749.monitoring.domain.model.aggregates.Snapshot;
 import com.isa.platform.u202210749.monitoring.domain.model.queries.GetSnapshotByIdQuery;
 import com.isa.platform.u202210749.monitoring.domain.model.queries.GetSnapshotsByProductIdQuery;
 import com.isa.platform.u202210749.monitoring.domain.services.SnapshotCommandService;
@@ -31,9 +32,15 @@ public class SnapshotsController {
     }
 
     @GetMapping
-    public ResponseEntity<List<SnapshotResource>> getSnapshotsByProductId(@PathVariable Long productId){
+    public ResponseEntity<?> getSnapshotsByProductId(@PathVariable Long productId){
         var getSnapshotsByProductIdQuery = new GetSnapshotsByProductIdQuery(productId);
-        var snapshots = snapshotQueryService.handle(getSnapshotsByProductIdQuery);
+        List<Snapshot> snapshots;
+        try {
+            snapshots = snapshotQueryService.handle(getSnapshotsByProductIdQuery);
+        } catch (Exception e){
+            return ResponseEntity.notFound().build();
+
+        }
         var snapshotResources = snapshots.stream()
                 .map(SnapshotResourceFromEntityAssembler::toResourceFromEntity)
                 .toList();
