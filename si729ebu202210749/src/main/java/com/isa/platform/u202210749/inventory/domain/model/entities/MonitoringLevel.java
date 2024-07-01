@@ -1,8 +1,7 @@
-package com.isa.platform.u202210749.monitoring.domain.model.entities;
+package com.isa.platform.u202210749.inventory.domain.model.entities;
 
-import com.isa.platform.u202210749.monitoring.domain.model.valueobjects.MonitoringLevels;
+import com.isa.platform.u202210749.inventory.domain.model.valueobjects.MonitoringLevels;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
 @Entity

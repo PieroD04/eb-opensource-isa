@@ -1,7 +1,7 @@
-package com.isa.platform.u202210749.monitoring.domain.model.aggregates;
+package com.isa.platform.u202210749.inventory.domain.model.aggregates;
 
-import com.isa.platform.u202210749.monitoring.domain.model.commands.CreateProductCommand;
-import com.isa.platform.u202210749.monitoring.domain.model.entities.MonitoringLevel;
+import com.isa.platform.u202210749.inventory.domain.model.commands.CreateProductCommand;
+import com.isa.platform.u202210749.inventory.domain.model.entities.MonitoringLevel;
 import com.isa.platform.u202210749.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -34,9 +34,5 @@ public class Product extends AuditableAbstractAggregateRoot<Product> {
         this.model = command.model();
         this.serialNumber = command.serialNumber();
         this.monitoringLevel = monitoringLevel;
-    }
-
-    public String getMonitoringLevel() {
-        return monitoringLevel.getName();
     }
 }
